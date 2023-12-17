@@ -1,7 +1,6 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 #include "maths.h"
-#include "maths.cpp"
 
 TEST_CASE("test primes", "[is_prime]")
 {
@@ -27,11 +26,17 @@ TEST_CASE("absolute", "[absolute]")
 
 TEST_CASE("power", "[power]")
 {
-  REQUIRE(power(1,3) == 1);
-  REQUIRE(power(2,2) == 4);
-  REQUIRE(power(2,3) == 8);
-  REQUIRE(power(3,2) == 9);
-  REQUIRE(power(3,3) == 27);
-  REQUIRE(power(3,-2) == -9);
-  REQUIRE(power(3,-3) == -27);
+  REQUIRE(power(1.0,3) == 1.0);
+  REQUIRE(power(1,-3) == 1.0);
+  REQUIRE(power(2.0,2) == 4.0);
+  REQUIRE(power(2.0,3) == 8.0);
+  REQUIRE(power(3.0,2) == 9.0);
+  double result1 = power(3.0,-2);
+  double expected1 = 1.0/9.0;
+  double epsilon = 1e-6;
+  REQUIRE(std::abs(result1-expected1) < epsilon);
+  double result2 = power(4.0,-2);
+  double expected2 = 1.0/16.0;
+  REQUIRE(std::abs(result2-expected2) < epsilon);
+  
 }

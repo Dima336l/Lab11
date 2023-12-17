@@ -9,9 +9,14 @@ double absolute(double number)
 
 double power(double number, int exponent)
 {
+  
   double result = number;
-  for (int i = 0; i < exponent; ++i)
-    result *= number;
+  for (int i = 0; i < absolute(exponent) - 1; ++i) {
+       result *= number;
+  }
+  if (exponent < 0) {
+      result = 1.0 / result;
+  }
   return result;
 }
 
